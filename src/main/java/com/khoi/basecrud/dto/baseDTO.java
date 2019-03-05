@@ -12,7 +12,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table
 public class baseDTO implements Serializable {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
