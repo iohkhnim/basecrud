@@ -2,17 +2,36 @@ package com.khoi.basecrud.dto;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+@Entity
+@Table
 public class baseDTO implements Serializable {
-  private String id;
-  private Date createdTime;
-  private Date updatedTime;
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name = "id")
+  private int id;
 
-  public String getId() {
+  @Column(name = "created_at", columnDefinition = "DATETIME")
+  @Temporal(TemporalType.TIMESTAMP)
+  private java.util.Date createdTime;
+
+  @Column(name = "updated_at", columnDefinition = "DATETIME")
+  @Temporal(TemporalType.TIMESTAMP)
+  private java.util.Date updatedTime;
+
+  public int getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(int id) {
     this.id = id;
   }
 

@@ -8,9 +8,11 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
 @Repository
-public class BaseDAOImpl<T extends baseDTO, PK extends Serializable> implements IBaseDAO<T, PK> {
+public abstract class BaseDAOImpl<T extends baseDTO, PK extends Serializable> implements IBaseDAO<T, PK> {
 
   @PersistenceContext
   protected EntityManager entityManager;
@@ -23,9 +25,13 @@ public class BaseDAOImpl<T extends baseDTO, PK extends Serializable> implements 
         .getActualTypeArguments()[0];
   }
 
+  /*public void setClass(Class<T> classToSet){
+    this.entityClass = classToSet
+  }*/
+
   @Override
   public List<T> findAll() {
-    String hql = "FROM " + entityClass.getName() + " as class ORDER BY class.id";
+    String hql = "FROM " + entityClass.getSimpleName() + " as class ORDER BY class.id";
     return (List<T>) entityManager.createQuery(hql).getResultList();
   }
 
