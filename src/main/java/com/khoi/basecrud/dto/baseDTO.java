@@ -1,8 +1,9 @@
 package com.khoi.basecrud.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class baseDTO {
+public class baseDTO implements Serializable {
   private String id;
   private Date createdTime;
   private Date updatedTime;
