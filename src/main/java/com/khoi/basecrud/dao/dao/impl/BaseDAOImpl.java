@@ -4,7 +4,9 @@ import com.khoi.basecrud.dao.IBaseDAO;
 import com.khoi.basecrud.dto.baseDTO;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
+import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
@@ -44,6 +46,8 @@ public abstract class BaseDAOImpl<T extends baseDTO, PK extends Serializable>
   @Override
   public Boolean create(T t) {
     try {
+      t.setCreatedTime(Calendar.getInstance(TimeZone.getTimeZone("GMT")).getTime());
+      t.setUpdatedTime(Calendar.getInstance(TimeZone.getTimeZone("GMT")).getTime());
       this.entityManager.persist(t);
       return true;
     } catch (Exception ex) {
@@ -54,6 +58,7 @@ public abstract class BaseDAOImpl<T extends baseDTO, PK extends Serializable>
   @Override
   public Boolean update(T t) {
     try {
+      t.setUpdatedTime(Calendar.getInstance(TimeZone.getTimeZone("GMT")).getTime());
       this.entityManager.merge(t);
       return true;
     } catch (Exception ex) {

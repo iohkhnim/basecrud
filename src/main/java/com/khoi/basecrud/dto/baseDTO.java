@@ -11,6 +11,7 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.springframework.lang.Nullable;
 
 @MappedSuperclass
 public class baseDTO implements Serializable {
@@ -21,10 +22,12 @@ public class baseDTO implements Serializable {
   private int id;
 
   @Column(name = "created_at", columnDefinition = "DATETIME")
+  @Nullable
   @Temporal(TemporalType.TIMESTAMP)
   private java.util.Date createdTime;
 
   @Column(name = "updated_at", columnDefinition = "DATETIME")
+  @Nullable
   @Temporal(TemporalType.TIMESTAMP)
   private java.util.Date updatedTime;
 
