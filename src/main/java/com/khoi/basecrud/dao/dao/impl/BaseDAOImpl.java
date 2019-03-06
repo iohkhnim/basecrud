@@ -1,5 +1,6 @@
 package com.khoi.basecrud.dao.dao.impl;
 
+import com.khoi.basecrud.BasecrudApplication;
 import com.khoi.basecrud.dao.IBaseDAO;
 import com.khoi.basecrud.dto.baseDTO;
 import java.io.Serializable;
@@ -7,12 +8,14 @@ import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import org.springframework.boot.SpringApplication;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 @Repository
 public abstract class BaseDAOImpl<T extends baseDTO, PK extends Serializable> implements IBaseDAO<T, PK> {
+
 
   @PersistenceContext
   protected EntityManager entityManager;
@@ -25,13 +28,16 @@ public abstract class BaseDAOImpl<T extends baseDTO, PK extends Serializable> im
         .getActualTypeArguments()[0];
   }
 
+  public static void main(String[] args) {
+    System.out.println();
+  }
   /*public void setClass(Class<T> classToSet){
     this.entityClass = classToSet
   }*/
 
   @Override
   public List<T> findAll() {
-    String hql = "FROM " + entityClass.getSimpleName() + " as class ORDER BY class.id";
+    String hql = "FROM " + this.entityClass.getName() + " as class ORDER BY class.id";
     return (List<T>) entityManager.createQuery(hql).getResultList();
   }
 
