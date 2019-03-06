@@ -1,24 +1,15 @@
 package com.khoi.basecrud.dao.dao.impl;
 
-import com.khoi.basecrud.BasecrudApplication;
 import com.khoi.basecrud.dao.IBaseDAO;
 import com.khoi.basecrud.dto.baseDTO;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
-<<<<<<< HEAD
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import org.springframework.boot.SpringApplication;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-=======
->>>>>>> 931255144dfff016f2536b4c0a0667a62f7352a0
+
 
 @Transactional
 @Repository
@@ -26,13 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 public abstract class BaseDAOImpl<T extends baseDTO, PK extends Serializable>
     implements IBaseDAO<T, PK> {
 
-<<<<<<< HEAD
-
   @PersistenceContext
   protected EntityManager entityManager;
-=======
-  @PersistenceContext protected EntityManager entityManager;
->>>>>>> 931255144dfff016f2536b4c0a0667a62f7352a0
   protected Class<T> entityClass;
 
   public BaseDAOImpl() {
@@ -40,10 +26,10 @@ public abstract class BaseDAOImpl<T extends baseDTO, PK extends Serializable>
     this.entityClass = (Class<T>) genericSuperclass.getActualTypeArguments()[0];
   }
 
-<<<<<<< HEAD
   public static void main(String[] args) {
     System.out.println();
   }
+
   /*public void setClass(Class<T> classToSet){
     this.entityClass = classToSet
 =======
@@ -54,13 +40,7 @@ public abstract class BaseDAOImpl<T extends baseDTO, PK extends Serializable>
   }*/
   @Override
   public List<T> findAll() {
-<<<<<<< HEAD
-    String hql = "FROM " + this.entityClass.getName() + " as class ORDER BY class.id";
-=======
-    // String name = getNeededClassName(this.entityClass.getName().toString());
-    // String hql = "FROM " + name + " as obj ORDER BY obj.id";
     String hql = "FROM " + this.entityClass.getTypeName() + " as obj ORDER BY obj.id";
->>>>>>> 931255144dfff016f2536b4c0a0667a62f7352a0
     return (List<T>) entityManager.createQuery(hql).getResultList();
   }
 
