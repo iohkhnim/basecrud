@@ -30,14 +30,6 @@ public abstract class BaseDAOImpl<T extends baseDTO, PK extends Serializable>
     System.out.println();
   }
 
-  /*public void setClass(Class<T> classToSet){
-    this.entityClass = classToSet
-=======
-  /*public static String getNeededClassName(String name){
-    String[] names = name.split("\\.");
-    return names[names.length-1];
->>>>>>> 931255144dfff016f2536b4c0a0667a62f7352a0
-  }*/
   @Override
   public List<T> findAll() {
     String hql = "FROM " + this.entityClass.getTypeName() + " as obj ORDER BY obj.id";
