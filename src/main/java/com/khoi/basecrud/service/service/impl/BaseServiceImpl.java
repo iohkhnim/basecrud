@@ -28,8 +28,8 @@ public class BaseServiceImpl<T extends baseDTO, PK extends Serializable> impleme
   }
 
   public Boolean create(T t) {
-    t.setCreatedTime(Calendar.getInstance(TimeZone.getTimeZone("GMT")).getTime());
-    t.setUpdatedTime(Calendar.getInstance(TimeZone.getTimeZone("GMT")).getTime());
+    //t.setCreatedTime(Calendar.getInstance(TimeZone.getTimeZone("GMT")).getTime());
+    //t.setUpdatedTime(Calendar.getInstance(TimeZone.getTimeZone("GMT")).getTime());
     Boolean flag = baseDAO.create(t);
     if (flag) {
       return true;
@@ -39,7 +39,7 @@ public class BaseServiceImpl<T extends baseDTO, PK extends Serializable> impleme
   }
 
   public Boolean update(T t) {
-    t.setUpdatedTime(Calendar.getInstance(TimeZone.getTimeZone("GMT")).getTime());
+    //t.setUpdatedTime(Calendar.getInstance(TimeZone.getTimeZone("GMT")).getTime());
     Boolean flag = baseDAO.update(t);
     if (flag) {
       return true;
