@@ -21,7 +21,7 @@ public class baseDTO implements Serializable {
   @Column(name = "id")
   private int id;
 
-  @Column(name = "created_at", columnDefinition = "DATETIME")
+  @Column(name = "created_at", columnDefinition = "DATETIME", updatable = false)
   @Nullable
   @Temporal(TemporalType.TIMESTAMP)
   private java.util.Date createdTime;

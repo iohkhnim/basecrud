@@ -58,9 +58,13 @@ public abstract class BaseDAOImpl<T extends baseDTO, PK extends Serializable>
   @Override
   public Boolean update(T t) {
     try {
-      t.setUpdatedTime(Calendar.getInstance(TimeZone.getTimeZone("GMT")).getTime());
-      this.entityManager.merge(t);
-      return true;
+      if (entityManager.find(entityClass, t.getId()) != null) {
+        t.setUpdatedTime(Calendar.getInstance(TimeZone.getTimeZone("GMT")).getTime());
+        this.entityManager.merge(t);
+        return true;
+      } else {
+        return false;
+      }
     } catch (Exception ex) {
       return false;
     }
