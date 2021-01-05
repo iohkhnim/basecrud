@@ -12,7 +12,7 @@ public interface IBaseDAO<T extends baseDTO, PK extends Serializable> {
 
   Boolean update(T object);
 
-  Boolean create(T object);
+  int create(T object);
 
   Boolean delete(PK id);
 }

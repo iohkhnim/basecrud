@@ -27,14 +27,14 @@ public class BaseServiceImpl<T extends baseDTO, PK extends Serializable> impleme
     return baseDAO.findByid(id);
   }
 
-  public Boolean create(T t) {
+  public int create(T t) {
     //t.setCreatedTime(Calendar.getInstance(TimeZone.getTimeZone("GMT")).getTime());
     //t.setUpdatedTime(Calendar.getInstance(TimeZone.getTimeZone("GMT")).getTime());
-    Boolean flag = baseDAO.create(t);
-    if (flag) {
-      return true;
+    int id = baseDAO.create(t);
+    if (id != 0) {
+      return id;
     } else {
-      return false;
+      return 0;
     }
   }
 

@@ -44,14 +44,14 @@ public abstract class BaseDAOImpl<T extends baseDTO, PK extends Serializable>
   }
 
   @Override
-  public Boolean create(T t) {
+  public int create(T t) {
     try {
       t.setCreatedTime(Calendar.getInstance(TimeZone.getTimeZone("GMT")).getTime());
       t.setUpdatedTime(Calendar.getInstance(TimeZone.getTimeZone("GMT")).getTime());
       this.entityManager.persist(t);
-      return true;
+      return t.getId();
     } catch (Exception ex) {
-      return false;
+      return 0;
     }
   }
 
